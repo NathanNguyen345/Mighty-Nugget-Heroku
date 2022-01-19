@@ -1,0 +1,12 @@
+.BodyBoxContainer {
+  margin-bottom: 50px;
+}
+
+.LoginButton {
+  width: 30em;
+}
+
+:global .Stake {
+  width: 10em;
+  height: 10em;
+}

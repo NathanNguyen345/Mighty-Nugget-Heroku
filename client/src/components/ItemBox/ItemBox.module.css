@@ -1,0 +1,25 @@
+.MintingGrid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.ItemBoxContainer {
+  flex-shrink: 0;
+  border: 1px solid black;
+}
+
+.ItemBoxContainer p {
+  font-size: 1em;
+}
+
+.Item {
+  flex-grow: 1;
+}
+
+.WeaponButton {
+  background: transparent;
+  background-repeat: no-repeat;
+  border: 1px solid black;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}

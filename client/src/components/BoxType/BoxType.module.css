@@ -1,0 +1,94 @@
+.SplashBoxContainer {
+  width: 70em;
+}
+
+.DecorateBox {
+  border: 15px solid #4d3e1a;
+  border-top-color: #6c5826;
+  border-bottom-color: #6c5826;
+  color: #da4040;
+  background-image: url("../../assets/image/boxbackground.png");
+  background-size: cover;
+  text-shadow: 0.1em 0.1em black;
+}
+
+.DecorateBoxInner {
+  border: 10px solid #78622c;
+  text-align: center;
+}
+
+:global .Mining {
+  width: 300px;
+  height: 300px;
+}
+
+:global .flex-spaced-evenly {
+  justify-content: space-around;
+  align-items: center;
+}
+
+/*** Login ***/
+
+.LoginContainer {
+  width: 60em;
+  display: flex;
+  flex-direction: column;
+}
+
+.Login {
+}
+
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/*** Terms ***/
+.TermsContainer {
+  width: 70em;
+}
+
+/*** Inventory ***/
+.InventoryTop {
+  height: 10em;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  text-shadow: 0.1em 0.1em black;
+}
+
+.InventoryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 30em;
+}
+
+.GridItem {
+  border-right: 1px solid black;
+  overflow: hidden;
+}
+
+/*** No Risk Minting ***/
+.NoRiskMinting {
+  height: 30em;
+}
+
+.StakeContainer {
+  height: 30em;
+}
+
+/*** Stake ***/
+
+/*** Transactions ***/
+.TransactionContainer {
+  width: 25vw;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+}
+.TransactionCard img {
+  width: 2em;
+  height: 2em;
+}

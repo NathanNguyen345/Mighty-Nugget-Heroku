@@ -1,0 +1,45 @@
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  color: white;
+  height: 5em;
+  /* position: fixed; */
+}
+
+.NavBarImg {
+  /* flex-grow: 1; */
+}
+
+.NavBarImg img {
+  height: 5em;
+  width: 5em;
+}
+
+.NavBarBulletContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.NavBarBulletContainer ul {
+  display: flex;
+  align-items: stretch; /* Default */
+  justify-content: space-around;
+  width: 100%;
+}
+
+.NavBarBulletContainer ul li {
+  display: block;
+  flex: 0 1 auto; /* Default */
+  list-style-type: none;
+  text-align: center;
+}
+
+.NavBarBulletContainer ul li a {
+  text-decoration: none;
+}
+
+.NavBarBulletContainer ul li a:visited {
+  color: white;
+}

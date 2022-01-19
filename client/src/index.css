@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  font-family: "BrokenConsoleBold", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-image: url("./assets/image/background-pixel.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+button {
+  font-family: "BrokenConsoleBold";
+}
+
+@font-face {
+  font-family: "BrokenConsoleBold";
+  src: url("./assets/font/BrokenconsoleBold-8Mdoz.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a:visited {
+  color: #4043da;
+}
