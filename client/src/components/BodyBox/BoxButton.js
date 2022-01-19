@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../slices/userLoginSlice';
 import css from "../BodyBox/BodyBox.module.css";
-import res from 'express/lib/response';
 
 function BoxButton(props) {
     const { action, userName, userPass } = props;
@@ -29,7 +28,7 @@ function BoxButton(props) {
                         navigate("/town");
                     })
                     .catch(err => {
-                        return res.status(400).json(err.response.data.msg)
+                        // return res.status(400).json(err.response.data.msg)
                     });
                 break;
             case 'createUser':
@@ -39,7 +38,7 @@ function BoxButton(props) {
                         navigate("/town");
                     })
                     .catch(err => {
-                        return res.status(400).json(err.response.data.msg)
+                        // return res.status(400).json(err.response.data.msg)
                     });
                 break;
             default:
