@@ -8,7 +8,7 @@ const weaponSchema = new Schema(
             required: true
         },
         atk: {
-            type: Number,
+            type: String,
             required: true
         },
         durability: {

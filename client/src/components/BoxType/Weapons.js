@@ -29,7 +29,7 @@ function Weapons() {
     return (
         <div className={`${css.DecorateBox}`}>
             <div className={`${css.DecorateBoxInner}`}>
-                <div className={`${css.InventoryTop}`}>
+                <div className={`${css.InventoryTop} flex`}>
                     <div className={`${css.InventoryGrid}`}>
                         {renderGridSlots()}
                     </div>

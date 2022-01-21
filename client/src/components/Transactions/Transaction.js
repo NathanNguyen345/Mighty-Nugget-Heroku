@@ -12,7 +12,7 @@ function Transaction() {
 
     // TODO: Changed from GET to POST to work with heroku
     useEffect(() => {
-        axios.post(`/transaction/full/${userInfo.userId}`)
+        axios.post(`/transaction/full/`, { id: userInfo.userId })
             .then(res => {
                 dispatch(fetchTransactionData(res.data.transactions))
             }).catch(err => {

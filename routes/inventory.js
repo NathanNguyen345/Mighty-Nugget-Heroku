@@ -115,13 +115,21 @@ Router.post('/mint/subtractMaterial', (req, res) => {
                 updateQuery[key] = foundDoc[key] - materials[key]
             }
 
-            Items.findOneAndUpdate({ userId: id }, updateQuery, { upsert: true, new: true }, (err, updated) => {
-                if (updated) {
-                    return res.status(200).json({ updatedData: updated })
-                } else {
-                    console.log(err)
-                }
-            })
+            if (foundDoc.wood >= materials.wood &&
+                foundDoc.ore >= materials.ore &&
+                foundDoc.fish >= materials.fish &&
+                foundDoc.ether >= materials.ether) {
+                Items.findOneAndUpdate({ userId: id }, updateQuery, { upsert: true, new: true }, (err, updated) => {
+                    if (updated) {
+                        return res.status(200).json({ updatedData: updated })
+                    } else {
+                        console.log(err)
+                    }
+                })
+            }
+            else {
+                return res.status(400).json({ msg: "Insufficent Funds" })
+            }
         }
     })
 

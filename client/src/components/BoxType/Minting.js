@@ -10,6 +10,7 @@ function NoRiskBox() {
     const materialCounterSliceState = useSelector(state => state.materialCounterSlice);
     const mintMaterialState = useSelector(state => state.mintMaterialsSlice)
     const userInfoState = useSelector(state => state.userLoginSlice);
+    const error = useSelector(state => state.userInventorySlice.error);
 
     const dispatch = useDispatch();
 
@@ -32,12 +33,12 @@ function NoRiskBox() {
         <div className={`${css.NoRiskMinting}`}>
             <div className={`${css.DecorateBox}`}>
                 <div className={`${css.DecorateBoxInner}`}>
-                    <p>Play it safe.</p>
-                    <p>You're guaranteed to receive a weapon on mint.</p>
-                    <p>but you'll have to pay a 10% tax to the blacksmith</p>
+                    <h2>Mint A Weapon</h2>
+                    <p>You're guaranteed to receive a weapon on mint with randomize stats</p>
                     <MintContainer />
                     <p> Select a weapon to see how much materials is needed</p>
                     <WeaponsContainer />
+                    <p className='blueText'>{error}</p>
                     <button className='pixelButton' onClick={mintItemHandler}>Mint Item Now</button>
                 </div>
             </div>

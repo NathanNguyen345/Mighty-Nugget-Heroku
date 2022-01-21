@@ -21,10 +21,9 @@ Router.post('/:name/:action', (req, res) => {
 })
 
 // API to get user transaction by ID
-Router.post('/full/:userId', (req, res) => {
-
-    if (req.params.userId !== undefined) {
-        Transaction.find({ userId: req.params.userId }, (err, transactionFound) => {
+Router.post('/full', (req, res) => {
+    if (req.body.id !== undefined) {
+        Transaction.find({ userId: req.body.id }, (err, transactionFound) => {
             if (transactionFound) {
                 res.status(200).json({ transactions: transactionFound })
             } else {

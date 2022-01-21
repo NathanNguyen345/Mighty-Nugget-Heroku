@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import css from "./Nav.module.css";
 import { reset } from "../../slices/userLoginSlice";
+import { resetInventoryCount } from "../../slices/userInventorySlice"
 
 function NavBullet() {
     const userLogin = useSelector(state => state.userLoginSlice);
-    const disptch = useDispatch();
+    const dispatch = useDispatch();
 
     const logoutClickHandler = () => {
-        disptch(reset());
+        dispatch(reset());
+        dispatch(resetInventoryCount());
     }
 
     return (
@@ -21,7 +23,7 @@ function NavBullet() {
                 <li><Link to="/town">Town</Link></li>
                 <li><Link to="/transactions">Transaction</Link></li>
                 {/* <li><Link to="/explore">Explore</Link></li> */}
-                <li>Whitepaper</li>
+                {/* <li>Whitepaper</li> */}
             </ul>
         </div>
     )

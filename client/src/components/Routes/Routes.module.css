@@ -26,8 +26,7 @@
 
 :global .flex {
   display: flex;
-  /* margin-bottom: 3em; */
-  /* margin-top: 3em; */
+  align-items: center;
 }
 
 .PageTitle {

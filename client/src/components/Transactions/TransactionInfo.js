@@ -14,7 +14,7 @@ function TransactionStake(props) {
                 <h3><InventoryImg imgId={type} /></h3>
             </div>
             <div>
-                <h3>{amount}</h3>
+                <p className='blueText'>{amount}</p>
             </div>
             <div>
                 <h3>{state}</h3>

@@ -51,8 +51,8 @@ function StakeInfo(props) {
         <div className={`flex flex-col`}>
             <div>
                 <p>{name}</p>
-                <p>Committed: {userLogin.stake[name]}</p>
-                <p>Pool: {stakeData.inventory[name]}</p>
+                <p>Committed: <span className='blueText'>{userLogin.stake[name]}</span></p>
+                <p>Pool: <span className='blueText'>{stakeData.inventory[name]}</span></p>
             </div>
             <div>
                 <input type='number' onChange={despoitChangeHandler}></input>

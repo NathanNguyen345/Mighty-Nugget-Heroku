@@ -38,8 +38,24 @@
 
 .NavBarBulletContainer ul li a {
   text-decoration: none;
+  transition: all 0.5s ease 0s;
 }
 
 .NavBarBulletContainer ul li a:visited {
   color: white;
+}
+
+.NavBarBulletContainer ul li a:active {
+  color: rgb(0, 225, 255);
+  transition: all 0.5s ease 0s;
+}
+
+.NavBarBulletContainer ul li a:focus {
+  color: rgb(0, 225, 255);
+  transition: all 0.5s ease 0s;
+}
+
+.NavBarBulletContainer ul li a:hover {
+  color: rgb(0, 225, 255);
+  transition: all 0.5s ease 0s;
 }

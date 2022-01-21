@@ -65,7 +65,7 @@ function Login(props) {
                                 <input type="password" name="name" onChange={handleUserPassChange} />
                             </label>
                             {renderButton()}
-                            <label className='errorCode'>
+                            <label className='blueText'>
                                 {/*TODO: Fix log/create double display */}
                                 {userLoginError}
                             </label>

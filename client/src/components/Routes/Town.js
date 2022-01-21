@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import Terms from '../BoxType/Terms';
 import Minting from '../BoxType/Minting';
 import Inventory from '../BoxType/Inventory';
 import Weapons from '../BoxType/Weapons';
@@ -16,11 +15,11 @@ function Town() {
 
     useEffect(() => {
         // TODO: Changed from GET to POST to work with heroku
-        axios.post(`/transaction/full/${userInfo}`)
+        axios.post(`/transaction/full/`, { id: userInfo })
             .then(res => {
                 dispatch(fetchTransactionData(res.data.transactions))
             }).catch(err => {
-                // console.log(err.message.data);
+                console.log(err.message.data);
             })
         // TODO: Changed from GET to POST to work with heroku
         axios.post(`/mint/axe`)

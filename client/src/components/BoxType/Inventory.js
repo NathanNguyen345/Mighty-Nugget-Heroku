@@ -27,9 +27,9 @@ function Inventory() {
             if (userFullInventory.hasOwnProperty(key)) {
                 content.push(
                     <div className={`${css.GridItem}`} key={key}>
-                        {key}
+                        <p>{key}</p>
                         <InventoryImg imgId={key} />
-                        {userFullInventory[key]}
+                        <p className='blueText'>{userFullInventory[key]}</p>
                     </div>)
             }
         }

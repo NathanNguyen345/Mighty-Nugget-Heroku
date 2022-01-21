@@ -13,7 +13,7 @@ function WeaponButton(props) {
 
     // Click weapon to display new materials and reset counter redux
     const weaponClickHandler = (name) => {
-        axios.get(`/mint/${name}`)
+        axios.post(`/mint/${name}`)
             .then(res => {
                 dispatch(fetchFullMaterial(res.data.item.mats))
                 dispatch(resetCounter());

@@ -14,24 +14,31 @@ export const updateMaterialThunk = createAsyncThunk(
 
 export const subtractMintingMaterialsThunk = createAsyncThunk(
     'subtractMintingMaterials/postData',
-    async (data) => {
-        const response = await axios.post(`/inventory/mint/subtractMaterial`, { data })
-        return response.data.updatedData
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`/inventory/mint/subtractMaterial`, { data })
+            return response.data.updatedData
+        } catch (err) {
+            console.log(err.response)
+            return rejectWithValue(err.response.data.msg);
+        }
     }
 )
 
+const initialState = {
+    inventory: {
+        wood: 0,
+        ore: 0,
+        fish: 0,
+        ether: 0,
+    },
+    loading: false,
+    error: ""
+}
+
 const userInventorySlice = createSlice({
     name: "userInventory",
-    initialState: {
-        inventory: {
-            wood: 0,
-            ore: 0,
-            fish: 0,
-            ether: 0,
-        },
-        loading: false,
-        error: ""
-    },
+    initialState,
     reducers: {
         fetchFullInventory(state, action) {
             state.inventory.wood = action.payload.wood;
@@ -47,6 +54,9 @@ const userInventorySlice = createSlice({
             state.inventory.ore = state.inventory.ore - action.payload.ore;
             state.inventory.fish = state.inventory.fish - action.payload.fish;
             state.inventory.ether = state.inventory.ether - action.payload.ether;
+        },
+        resetInventoryCount(state) {
+            Object.assign(state, initialState);
         }
     },
     extraReducers: {
@@ -70,10 +80,11 @@ const userInventorySlice = createSlice({
             state.inventory.fish = action.payload.fish;
             state.inventory.ether = action.payload.ether;
             state.loading = false;
+            state.error = "";
         },
         [subtractMintingMaterialsThunk.rejected]: (state, action) => {
             state.loading = false;
-            state.error = action;
+            state.error = action.payload;
         }
     }
 })
@@ -81,7 +92,8 @@ const userInventorySlice = createSlice({
 export const {
     fetchFullInventory,
     updateMaterial,
-    subtractMintingMaterials
+    subtractMintingMaterials,
+    resetInventoryCount
 } = userInventorySlice.actions;
 
 export default userInventorySlice.reducer;

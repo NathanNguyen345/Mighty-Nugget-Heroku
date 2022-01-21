@@ -12,7 +12,7 @@ function ItemBoxContainer(props) {
             <div className={`${css.Item}`}>
                 <div className={`${'grid'} ${'gridCol'}`}>
                     <p>{title}</p>
-                    <p>{action}</p>
+                    <p className='blueText'>{action}</p>
                 </div>
                 <div>
                     <InventoryImg imgId={title} />

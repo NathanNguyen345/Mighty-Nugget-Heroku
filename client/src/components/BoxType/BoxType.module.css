@@ -10,6 +10,7 @@
   background-image: url("../../assets/image/boxbackground.png");
   background-size: cover;
   text-shadow: 0.15em 0.15em black;
+  margin: 1em;
 }
 
 .DecorateBoxInner {
@@ -53,7 +54,6 @@
 
 /*** Inventory ***/
 .InventoryTop {
-  height: 10em;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   border-left: 1px solid black;

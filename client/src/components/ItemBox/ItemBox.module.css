@@ -33,6 +33,6 @@
 
 :global .WeaponButtonClicked {
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0 0); */
-  background-image: linear-gradient(rgba(218, 64, 64, 0.5) 0 0);
+  background-image: linear-gradient(rgba(0, 255, 255, 0.5) 0 0);
   color: white;
 }

@@ -53,6 +53,7 @@ input:focus {
   padding: 0.5em;
   border: 2px solid black !important;
   transition: all 0.4s ease 0s;
+  margin: 1em;
 }
 
 .pixelButton:hover {
@@ -69,6 +70,7 @@ input:focus {
   transition: all 0.1s ease 0s;
 }
 
-.errorCode {
-  color: blue;
+.blueText {
+  font-size: 1.2em;
+  color: rgb(0, 225, 255);
 }
