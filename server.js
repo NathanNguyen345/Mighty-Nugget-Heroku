@@ -22,7 +22,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
 
-    app.get('/', (req, res) => {
+    app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
         // req.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     })
@@ -38,10 +38,6 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("Connected to Mongo DB!");
 });
-
-app.get("/api/user", (req, res) => {
-    res.status(200).json({ name: "Testtt" });
-})
 
 // Use User Router
 const userRouter = require("./routes/user");
