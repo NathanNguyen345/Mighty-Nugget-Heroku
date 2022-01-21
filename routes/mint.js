@@ -3,7 +3,7 @@ const Router = express.Router();
 const Mint = require("../models/minting.model");
 
 // API to fetch a specific weapon in the DB
-Router.get('/:name', (req, res) => {
+Router.post('/:name', (req, res) => {
     const _name = req.params.name
 
     Mint.find({ name: _name }, (err, itemFound) => {

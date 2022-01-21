@@ -10,8 +10,9 @@ function Transaction() {
     const userInfo = useSelector(state => state.userLoginSlice);
     const dispatch = useDispatch();
 
+    // TODO: Changed from GET to POST to work with heroku
     useEffect(() => {
-        axios.get(`/transaction/full/${userInfo.userId}`)
+        axios.post(`/transaction/full/${userInfo.userId}`)
             .then(res => {
                 dispatch(fetchTransactionData(res.data.transactions))
             }).catch(err => {

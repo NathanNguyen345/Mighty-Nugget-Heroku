@@ -14,26 +14,27 @@ function Town() {
     const userInfo = useSelector(state => state.userLoginSlice.userId);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     // TODO: Loader?
-    //     axios.get(`/transaction/full/${userInfo}`)
-    //         .then(res => {
-    //             dispatch(fetchTransactionData(res.data.transactions))
-    //         }).catch(err => {
-    //             // console.log(err.message.data);
-    //         })
-    //     axios.get(`/mint/axe`)
-    //         .then(res => {
-    //             dispatch(fetchFullMaterial(res.data.item.mats))
-    //         })
-    // }, [userInfo])
+    useEffect(() => {
+        // TODO: Changed from GET to POST to work with heroku
+        axios.post(`/transaction/full/${userInfo}`)
+            .then(res => {
+                dispatch(fetchTransactionData(res.data.transactions))
+            }).catch(err => {
+                // console.log(err.message.data);
+            })
+        // TODO: Changed from GET to POST to work with heroku
+        axios.post(`/mint/axe`)
+            .then(res => {
+                dispatch(fetchFullMaterial(res.data.item.mats))
+            })
+    }, [userInfo])
 
     return (
         <div className={`${css.Town} ${'flex'} ${'item-center'} ${'flex-col'}`}>
             <div className={`${css.PageTitle}`}>
                 <h1>Town</h1>
             </div>
-            {/* <div className={`${css.Inventory} ${'flex'} ${'flex-col'}`}>
+            <div className={`${css.Inventory} ${'flex'} ${'flex-col'}`}>
                 <h2>User Inventory</h2>
                 <Inventory />
                 <h2>User Weapons</h2>
@@ -45,7 +46,7 @@ function Town() {
                     <Minting />
                     <StakeContainer />
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }

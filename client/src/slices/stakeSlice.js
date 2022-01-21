@@ -4,7 +4,8 @@ import axios from 'axios';
 export const fetchStakeDataThunk = createAsyncThunk(
     'fetchStakeData/getData',
     async () => {
-        const response = await axios.get('/stake/all')
+        // TODO: Changed from GET to POST to work with heroku 
+        const response = await axios.post('/stake/all')
         return response.data.item;
     }
 )

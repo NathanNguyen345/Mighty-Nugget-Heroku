@@ -3,7 +3,7 @@ const Router = express.Router();
 const Stake = require("../models/stake.model");
 
 // API to get all stake count
-Router.get('/all', (req, res) => {
+Router.post('/all', (req, res) => {
     Stake.find({}, (err, itemFound) => {
         if (itemFound) {
             const item = {

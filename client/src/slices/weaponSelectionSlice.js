@@ -4,7 +4,8 @@ import axios from "axios";
 export const fetchWeaponThunk = createAsyncThunk(
     'fetchWeapon/fetchWeaponThunk',
     async () => {
-        const response = await axios.get('weapon/all');
+        // TODO: Changed from GET to POST to work with heroku 
+        const response = await axios.post('weapon/all');
         return response.data.weapon
     }
 )
