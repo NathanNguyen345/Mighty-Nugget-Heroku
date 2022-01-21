@@ -33,7 +33,7 @@ function Town() {
             <div className={`${css.PageTitle}`}>
                 <h1>Town</h1>
             </div>
-            <div className={`${css.Inventory} ${'flex'} ${'flex-col'}`}>
+            {/* <div className={`${css.Inventory} ${'flex'} ${'flex-col'}`}>
                 <h2>User Inventory</h2>
                 <Inventory />
                 <h2>User Weapons</h2>
@@ -45,7 +45,7 @@ function Town() {
                     <Minting />
                     <StakeContainer />
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
