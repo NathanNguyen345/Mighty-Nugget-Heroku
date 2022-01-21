@@ -5,18 +5,18 @@ import { fetchFullInventory } from "../../slices/userInventorySlice";
 import { useSelector, useDispatch } from 'react-redux';
 import css from "./BoxType.module.css";
 
-
 function Inventory() {
     const userId = useSelector(state => state.userLoginSlice.userId);
     const userFullInventory = useSelector(state => state.userInventorySlice.inventory)
     const dispatch = useDispatch()
 
     useEffect(() => {
+        // TODO: Loader?
         axios.post("/inventory/full", { id: userId })
             .then(req => {
                 dispatch(fetchFullInventory(req.data.items))
             });
-    }, [])
+    }, [userId])
 
     // Render out grid layout for items
     const renderGridSlots = () => {

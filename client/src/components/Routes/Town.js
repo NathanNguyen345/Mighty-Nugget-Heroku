@@ -7,20 +7,26 @@ import Weapons from '../BoxType/Weapons';
 import StakeContainer from '../BoxType/StakeContainer';
 import { fetchTransactionData } from "../../slices/transactionSlice";
 import { useSelector, useDispatch } from 'react-redux';
+import { fetchFullMaterial } from "../../slices/mintMaterialsSlice";
 import css from "./Routes.module.css";
 
 function Town() {
-    const userInfo = useSelector(state => state.userLoginSlice);
+    const userInfo = useSelector(state => state.userLoginSlice.userId);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(`/transaction/full/${userInfo.userId}`)
+        // TODO: Loader?
+        axios.get(`/transaction/full/${userInfo}`)
             .then(res => {
                 dispatch(fetchTransactionData(res.data.transactions))
             }).catch(err => {
-                console.log(err.message.data);
+                // console.log(err.message.data);
             })
-    }, [])
+        axios.get(`/mint/axe`)
+            .then(res => {
+                dispatch(fetchFullMaterial(res.data.item.mats))
+            })
+    }, [userInfo])
 
     return (
         <div className={`${css.Town} ${'flex'} ${'item-center'} ${'flex-col'}`}>
@@ -37,7 +43,7 @@ function Town() {
                 <h2>Actvities</h2>
                 <div className={`${'grid'} ${'gridCol'}`}>
                     <Minting />
-                    <StakeContainer />s
+                    <StakeContainer />
                 </div>
             </div>
         </div>

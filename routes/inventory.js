@@ -8,21 +8,23 @@ const Transaction = require('../models/transaction.model');
 Router.post('/full', (req, res) => {
     const id = req.body.id;
 
-    Inventory.findOne({ userId: id }, (err, userFound) => {
-        if (userFound) {
-            Items.findOne({ _id: userFound.itemId }, (err, itemsFound) => {
-                const items = {
-                    wood: itemsFound.wood,
-                    ore: itemsFound.ore,
-                    fish: itemsFound.fish,
-                    ether: itemsFound.ether
-                }
-                res.status(200).json({ items: items });
-            })
-        } else {
-            res.status(400).json({ msg: err });
-        }
-    })
+    if (id !== "") {
+        Inventory.findOne({ userId: id }, (err, userFound) => {
+            if (userFound) {
+                Items.findOne({ _id: userFound.itemId }, (err, itemsFound) => {
+                    const items = {
+                        wood: itemsFound.wood,
+                        ore: itemsFound.ore,
+                        fish: itemsFound.fish,
+                        ether: itemsFound.ether
+                    }
+                    res.status(200).json({ items: items });
+                })
+            } else {
+                res.status(400).json({ msg: err });
+            }
+        })
+    }
 })
 
 // API to mint weapon into user inventory

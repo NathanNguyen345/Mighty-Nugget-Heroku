@@ -1,6 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const loginThunk = createAsyncThunk(
+    'login/postData',
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.post('/user/login', { data });
+            return response.data.userInfo
+        } catch (err) {
+            return rejectWithValue(err.response.data.msg);
+        }
+    }
+)
+
 export const addWeaponToInventoryThunk = createAsyncThunk(
     'addWeaponToInventory/postData',
     async (data) => {
@@ -26,7 +38,8 @@ const initialState = {
         fish: 0
     },
     weapon: [],
-    loggedIn: false
+    loggedIn: false,
+    error: ""
 }
 
 const userLoginSlice = createSlice({
@@ -34,10 +47,10 @@ const userLoginSlice = createSlice({
     initialState,
     reducers: {
         login(state, action) {
-            state.userId = action.payload._id;
-            state.inventoryId = action.payload.itemId;
-            state.stake = action.payload.stake;
-            state.weapon = action.payload.weapon;
+            state.userId = action.payload.userInfo._id;
+            state.inventoryId = action.payload.userInfo.itemId;
+            state.stake = action.payload.userInfo.stake;
+            state.weapon = action.payload.userInfo.weapon;
             state.loggedIn = true;
         },
         updateUserStakeMaterial(state, action) {
@@ -50,6 +63,22 @@ const userLoginSlice = createSlice({
             Object.assign(state, initialState);
         }
     }, extraReducers: {
+        [loginThunk.pending]: (state) => {
+            state.loading = true;
+        },
+        [loginThunk.fulfilled]: (state, action) => {
+            state.userId = action.payload._id;
+            state.inventoryId = action.payload.itemId;
+            state.stake = action.payload.stake;
+            state.weapon = action.payload.weapon;
+            state.loggedIn = true;
+            state.loading = false;
+            state.error = "";
+        },
+        [loginThunk.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
         [addWeaponToInventoryThunk.pending]: (state) => {
             state.loading = true;
         },

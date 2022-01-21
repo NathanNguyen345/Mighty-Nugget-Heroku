@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCounter, subToCounter } from "../../slices/materialCounterSlice";
 
@@ -23,9 +23,9 @@ function ItemSelection(prop) {
 
     return (
         <div className={`${'flex'} ${'flex-evenly'}`}>
-            <button onClick={addClickHandler}>+</button>
+            <button className="pixelButton" onClick={addClickHandler}>+</button>
             <p>{matAmount}</p>
-            <button onClick={subClickHandler}>-</button>
+            <button className="pixelButton" onClick={subClickHandler}>-</button>
         </div>
     )
 }

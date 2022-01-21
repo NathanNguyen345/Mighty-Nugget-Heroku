@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import BodyContainer from '../BodyBox/BodyContainer';
 import BoxButton from '../BodyBox/BoxButton';
 import css from "./BoxType.module.css";
@@ -8,6 +9,7 @@ function Login(props) {
     const [heading, setHeading] = useState(null);
     const [userName, setUserName] = useState('');
     const [userPass, setUserPass] = useState('');
+    const userLoginError = useSelector(state => state.userLoginSlice.error);
 
     useEffect(() => {
         if (title === 'Login') {
@@ -60,9 +62,13 @@ function Login(props) {
                             </label>
                             <label>
                                 Password:
-                                <input type="text" name="name" onChange={handleUserPassChange} />
+                                <input type="password" name="name" onChange={handleUserPassChange} />
                             </label>
                             {renderButton()}
+                            <label className='errorCode'>
+                                {/*TODO: Fix log/create double display */}
+                                {userLoginError}
+                            </label>
                         </form>
                     </div>
                 </div>

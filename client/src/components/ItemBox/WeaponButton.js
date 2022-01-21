@@ -4,14 +4,12 @@ import { useDispatch } from 'react-redux';
 import ItemBoxContainer from './ItemBoxContainer';
 import { fetchFullMaterial } from "../../slices/mintMaterialsSlice";
 import { resetCounter } from "../../slices/materialCounterSlice";
-
 import css from "./ItemBox.module.css";
 
-
 function WeaponButton(props) {
-    const { item } = props
-
+    const { item, buttonClicked, onChange } = props
     const dispatch = useDispatch();
+    let clickedClass = buttonClicked ? "WeaponButtonClicked" : null;
 
     // Click weapon to display new materials and reset counter redux
     const weaponClickHandler = (name) => {
@@ -20,12 +18,13 @@ function WeaponButton(props) {
                 dispatch(fetchFullMaterial(res.data.item.mats))
                 dispatch(resetCounter());
             })
+        onChange(item.name);
     }
 
     return (
         <React.Fragment>
             <button
-                className={`${css.WeaponButton}`}
+                className={`${css.WeaponButton} ${clickedClass}`}
                 onClick={() => weaponClickHandler(item.name)}
                 value={item.name}>
                 <ItemBoxContainer

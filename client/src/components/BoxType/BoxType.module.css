@@ -9,7 +9,7 @@
   color: #da4040;
   background-image: url("../../assets/image/boxbackground.png");
   background-size: cover;
-  text-shadow: 0.1em 0.1em black;
+  text-shadow: 0.15em 0.15em black;
 }
 
 .DecorateBoxInner {

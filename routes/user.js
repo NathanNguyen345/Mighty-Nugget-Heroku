@@ -4,8 +4,8 @@ const User = require('../models/user.model');
 
 // API to create a new user
 Router.post('/createUser', (req, res) => {
-    const userName = req.body.userName;
-    const password = req.body.userPass;
+    const userName = req.body.data.userName.toLowerCase();
+    const password = req.body.data.userPass.toLowerCase();
 
     User.findOne({ userName: userName }, (err, userFound) => {
         if (userFound) {
@@ -35,18 +35,18 @@ Router.post('/createUser', (req, res) => {
 
 // API to log in a user
 Router.post('/login', (req, res) => {
-    const userName = req.body.userName;
-    const password = req.body.userPass;
+    const userName = req.body.data.userName.toLowerCase();
+    const password = req.body.data.userPass.toLowerCase();
 
     User.findOne({ userName: userName }, (err, userFound) => {
         if (userFound) {
             if (password !== userFound.password) {
-                res.status(401).json({ msg: "Invalid password. Please try again" });
+                res.status(401).json({ msg: "Invalid password" });
             } else {
-                res.status(200).json({ id: userFound });
+                res.status(200).json({ userInfo: userFound });
             }
         } else {
-            res.status(401).json({ msg: "User not found" });
+            res.status(401).json({ msg: "Username not found" });
         };
     })
 })
@@ -66,7 +66,7 @@ Router.post('/updateStake', (req, res) => {
             if (updated) {
                 res.status(200).json({ materialName, stakeCommit: updated.stake[materialName] });
             } else {
-                res.status(400).json(err);
+                res.status(400).json("Incorrect Username/Password. Please Try Again");
             }
         })
     })

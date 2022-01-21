@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import MintContainer from '../ItemBox/MintContainer';
 import WeaponsContainer from '../ItemBox/WeaponsContainer';
@@ -37,8 +36,9 @@ function NoRiskBox() {
                     <p>You're guaranteed to receive a weapon on mint.</p>
                     <p>but you'll have to pay a 10% tax to the blacksmith</p>
                     <MintContainer />
+                    <p> Select a weapon to see how much materials is needed</p>
                     <WeaponsContainer />
-                    <button onClick={mintItemHandler}>MINT</button>
+                    <button className='pixelButton' onClick={mintItemHandler}>Mint Item Now</button>
                 </div>
             </div>
         </div>

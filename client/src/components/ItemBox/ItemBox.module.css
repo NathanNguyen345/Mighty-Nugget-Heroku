@@ -4,7 +4,6 @@
 
 .ItemBoxContainer {
   flex-shrink: 0;
-  border: 1px solid black;
 }
 
 .ItemBoxContainer p {
@@ -13,13 +12,27 @@
 
 .Item {
   flex-grow: 1;
+  border: 1px solid black;
 }
 
 .WeaponButton {
+  padding: 0px;
+  border: 0px;
   background: transparent;
   background-repeat: no-repeat;
-  border: 1px solid black;
   cursor: pointer;
   overflow: hidden;
   outline: none;
+}
+
+.WeaponButton:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0 0);
+  /* background-image: linear-gradient(rgba(218, 64, 64, 0.5) 0 0); */
+  color: white;
+}
+
+:global .WeaponButtonClicked {
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0 0); */
+  background-image: linear-gradient(rgba(218, 64, 64, 0.5) 0 0);
+  color: white;
 }

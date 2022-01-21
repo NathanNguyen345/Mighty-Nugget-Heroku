@@ -56,10 +56,10 @@ function StakeInfo(props) {
             </div>
             <div>
                 <input type='number' onChange={despoitChangeHandler}></input>
-                <button onClick={depositClickHandler}>Deposit</button>
+                <button className='pixelButton' onClick={depositClickHandler}>Deposit</button>
 
                 <input type='number' onChange={withdrawChangeHandler}></input>
-                <button onClick={withdrawClickHandler}>Withdraw</button>
+                <button className='pixelButton' onClick={withdrawClickHandler}>Withdraw</button>
             </div>
         </div>
     )

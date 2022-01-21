@@ -32,3 +32,43 @@ code {
 a:visited {
   color: #4043da;
 }
+
+input {
+  padding: 0.5em;
+  border: 2px solid black;
+  transition: all 0.4s ease 0s;
+}
+
+input:focus {
+  outline: none !important;
+  border: 2px solid #da4040;
+  transition: all 0.4s ease 0s;
+}
+
+.pixelButton {
+  background-color: #da4040;
+  color: black !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.5em;
+  border: 2px solid black !important;
+  transition: all 0.4s ease 0s;
+}
+
+.pixelButton:hover {
+  color: #ffffff !important;
+  background: #da4040;
+  border: 2px solid black !important;
+  transition: all 0.4s ease 0s;
+}
+
+.pixelButton:active {
+  color: #dadada !important;
+  background: #882828;
+  border: 2px solid black !important;
+  transition: all 0.1s ease 0s;
+}
+
+.errorCode {
+  color: blue;
+}
