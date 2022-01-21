@@ -48,6 +48,14 @@ function Login(props) {
         setUserPass(e.target.value);
     }
 
+    const renderUserError = () => {
+        return (
+            <label className='blueText'>
+                {userLoginError}
+            </label>
+        )
+    }
+
     return (
         <div className={`${css.LoginContainer}`}>
             <div className={`${css.DecorateBox}`}>
@@ -66,8 +74,7 @@ function Login(props) {
                             </label>
                             {renderButton()}
                             <label className='blueText'>
-                                {/*TODO: Fix log/create double display */}
-                                {userLoginError}
+                                {title === 'Login' ? renderUserError() : null}
                             </label>
                         </form>
                     </div>

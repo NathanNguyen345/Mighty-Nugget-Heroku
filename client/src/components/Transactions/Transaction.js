@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import TransactionCard from './TransactionCard';
 import { fetchTransactionData } from '../../slices/transactionSlice';
@@ -44,7 +45,7 @@ function Transaction() {
     return (
         <div className={`${css.PageTitle}`}>
             <h1>Transactions</h1>
-            {renderTransactions()}
+            {userInfo.loggedIn ? renderTransactions() : <Navigate to="/" />}
         </div>
     )
 }
