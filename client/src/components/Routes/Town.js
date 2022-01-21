@@ -14,19 +14,19 @@ function Town() {
     const userInfo = useSelector(state => state.userLoginSlice.userId);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        // TODO: Loader?
-        axios.get(`/transaction/full/${userInfo}`)
-            .then(res => {
-                dispatch(fetchTransactionData(res.data.transactions))
-            }).catch(err => {
-                // console.log(err.message.data);
-            })
-        axios.get(`/mint/axe`)
-            .then(res => {
-                dispatch(fetchFullMaterial(res.data.item.mats))
-            })
-    }, [userInfo])
+    // useEffect(() => {
+    //     // TODO: Loader?
+    //     axios.get(`/transaction/full/${userInfo}`)
+    //         .then(res => {
+    //             dispatch(fetchTransactionData(res.data.transactions))
+    //         }).catch(err => {
+    //             // console.log(err.message.data);
+    //         })
+    //     axios.get(`/mint/axe`)
+    //         .then(res => {
+    //             dispatch(fetchFullMaterial(res.data.item.mats))
+    //         })
+    // }, [userInfo])
 
     return (
         <div className={`${css.Town} ${'flex'} ${'item-center'} ${'flex-col'}`}>
