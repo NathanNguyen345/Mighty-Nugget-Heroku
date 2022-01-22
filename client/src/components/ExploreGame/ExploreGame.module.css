@@ -1,0 +1,19 @@
+.GameGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.BoardButton {
+  display: flex;
+  width: 5em;
+  height: 5em;
+  margin: 1px;
+  justify-content: center;
+  align-items: center;
+}
+
+.BoardButton img {
+  width: 5em;
+  height: 5em;
+  display: none;
+}

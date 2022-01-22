@@ -1,15 +1,15 @@
 const express = require('express');
 const Router = express.Router();
 const Items = require('../models/items.model');
-const Inventory = require('../models/inventory.model');
 const Transaction = require('../models/transaction.model');
+const User = require('../models/user.model');
 
 // API to get all inventory material from user
 Router.post('/full', (req, res) => {
     const id = req.body.id;
 
     if (id !== "") {
-        Inventory.findOne({ userId: id }, (err, userFound) => {
+        User.findOne({ _id: id }, (err, userFound) => {
             if (userFound) {
                 Items.findOne({ _id: userFound.itemId }, (err, itemsFound) => {
                     const items = {
@@ -29,62 +29,55 @@ Router.post('/full', (req, res) => {
 
 // API to mint weapon into user inventory
 Router.post('/mintWeapon', (req, res) => {
-    const material = req.body.material;
-    const userId = req.body.userId;
-    const item = req.body.item;
-    let currentInventory = req.body.currentInventory;
-
-    for (let key in currentInventory) {
-        currentInventory[key] = currentInventory[key] - material[key]
+    const userId = req.body.data.userId;
+    const item = {
+        name: req.body.data.name,
+        atk: req.body.data.atk
     }
 
-    // Update user inventory with new material counts
-    Items.findOneAndUpdate(
-        { userId: userId },
-        currentInventory,
-        (err, updated) => {
-            if (updated) {
-                // save new transaction for weapon
-                const newTransaction = new Transaction({
-                    userId: updated.userId,
-                    action: 'mint',
-                    atk: item.atk,
-                    weaponName: item.name,
-                    state: "Pending"
+    User.findOne({ id: userId }, (err, userFound) => {
+        if (userFound) {
+            userFound.weapon.push(item);
+            userFound.save();
+
+            const newTransaction = new Transaction({
+                userId: userId,
+                action: 'mint',
+                atk: item.atk,
+                weaponName: item.name,
+                state: "Pending"
+            })
+
+            newTransaction.save()
+                .then(res => {
+                    setTimeout(() => {
+                        Transaction.findByIdAndUpdate(
+                            { _id: res.id },
+                            { state: "Minted" },
+                            { upsert: true },
+                            (err, itemUpdated) => {
+                                if (itemUpdated) {
+                                    console.log('Transaction Created')
+                                } else {
+                                    console.log("Transaction Failed")
+                                }
+                            })
+                    }, 3000)
+                }).catch(err => {
+                    console.log(err);
                 })
-
-                newTransaction.save()
-                    .then(res => {
-                        setTimeout(() => {
-                            Transaction.findByIdAndUpdate(
-                                { _id: res.id },
-                                { state: "Minted" },
-                                { upsert: true },
-                                (err, itemUpdated) => {
-                                    if (itemUpdated) {
-                                        // console.log(itemUpdated);
-                                    } else {
-                                        console.log(err);
-                                    }
-                                })
-                        }, 10000)
-                        console.log("New Weapon Minted")
-                    }).catch(err => {
-                        console.log(err)
-                    })
-
-                res.status(200).json({ msg: "Item Updated" })
-            } else {
-                res.status(400).json({ msg: err })
-            }
-        })
+            return res.status(200).json({ item: item })
+        } else {
+            return res.status(401).json({ msg: "Failed to find user" })
+        }
+    })
 })
 
 // API to update single material in user inventory
 Router.post('/:matType', (req, res) => {
     const matType = req.body.data.materialName;
     let amount = req.body.data.amount;
-    const inventoryId = "61c2c17a35cef28166c8865f";
+    const inventoryId = req.body.data.inventoryId;
     const updateQuery = {};
     updateQuery[matType] = req.body.data.material;
 
@@ -104,22 +97,25 @@ Router.post('/:matType', (req, res) => {
 
 // API to update minting materials
 Router.post('/mint/subtractMaterial', (req, res) => {
-    const id = req.body.data.userId;
-    const materials = req.body.data.materials
+    const itemId = req.body.data.itemId;
+    const materials = req.body.data.materials;
     const updateQuery = {};
-    const projection = { _id: 0, userId: 0 }
+    const projection = { _id: 0, userId: 0, __v: 0 };
+    const updateFlag = true;
 
-    Items.findOne({ userId: id }, projection, (err, foundDoc) => {
+    Items.findById({ _id: itemId }, projection, (err, foundDoc) => {
         if (foundDoc) {
             for (let key in foundDoc['_doc']) {
-                updateQuery[key] = foundDoc[key] - materials[key]
+                if (foundDoc[key] < materials[key]) {
+                    updateFlag = false;
+                    break;
+                } else {
+                    updateQuery[key] = foundDoc[key] - materials[key];
+                }
             }
 
-            if (foundDoc.wood >= materials.wood &&
-                foundDoc.ore >= materials.ore &&
-                foundDoc.fish >= materials.fish &&
-                foundDoc.ether >= materials.ether) {
-                Items.findOneAndUpdate({ userId: id }, updateQuery, { upsert: true, new: true }, (err, updated) => {
+            if (updateFlag) {
+                Items.findByIdAndUpdate({ _id: itemId }, updateQuery, { upsert: true, new: true }, (err, updated) => {
                     if (updated) {
                         return res.status(200).json({ updatedData: updated })
                     } else {
@@ -132,8 +128,6 @@ Router.post('/mint/subtractMaterial', (req, res) => {
             }
         }
     })
-
-    Items.findOneAndUpdate()
 })
 
 module.exports = Router;

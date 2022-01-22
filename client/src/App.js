@@ -7,6 +7,8 @@ import Nav from './components/Nav/Nav';
 import Home from './components/Routes/Home';
 import Town from './components/Routes/Town';
 import Explore from './components/Routes/Explore';
+import ExplorePhaser from './components/Routes/ExplorePhaser';
+import MarketPlace from './components/Routes/MarketPlace';
 import Transaction from './components/Transactions/Transaction';
 import {
   BrowserRouter,
@@ -27,6 +29,8 @@ function App() {
             <Route path="/town" exact element={<Town />} />
             <Route path="/transactions" exact element={<Transaction />} />
             <Route path="/explore" exact element={<Explore />} />
+            <Route path="/explorePhaser" exact element={<ExplorePhaser />} />
+            <Route path="/market" exact element={<MarketPlace />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

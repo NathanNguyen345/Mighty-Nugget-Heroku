@@ -1,40 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Phaser from 'phaser';
-import { IonPhaser } from '@ion-phaser/core';
-
-import WorldScene from '../Phaser/Scene/WorldScene';
-import BattleScene from '../Phaser/Scene/BattleScene';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import BoxTitle from '../BodyBox/BoxTitle';
+import Inventory from '../BoxType/Inventory';
+import GameBoard from '../ExploreGame/GameBoard';
+import css from "../Routes/Routes.module.css";
 
 function Explore() {
-    const gameRef = useRef(null);
-    const [game, setGame] = useState(null);
-    const [init, setInit] = useState(null);
-
-    useEffect(() => {
-        setInit(true);
-        const config = {
-            width: 1200,
-            height: 1200,
-            type: Phaser.AUTO,
-            physics: {
-                default: 'arcade',
-                arcade: {
-                    gravity: { y: 0 },
-                    debug: true
-                }
-            },
-            scene: [
-                WorldScene,
-                BattleScene
-            ]
-        }
-        setGame(config);
-    }, [])
+    const userInventory = useSelector(state => state.userInventory);
 
 
     return (
-        <div>
-            <IonPhaser ref={gameRef} game={game} initialize={init} />
+        <div className='flex flex-col'>
+            <div className={`${css.PageTitle}`}>
+                <h1>UNDER CONSTRUCTION</h1>
+            </div>
+            <Inventory />
+            <GameBoard />
         </div>
     )
 }

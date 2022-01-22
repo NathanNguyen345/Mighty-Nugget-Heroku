@@ -18,12 +18,15 @@ function InventoryImg(props) {
 
     const renderImgSrc = () => {
         switch (imgId) {
+            case 1:
             case 'wood':
                 setImgSrc(wood);
                 break;
+            case 2:
             case 'ore':
                 setImgSrc(ore);
                 break;
+            case 3:
             case 'fish':
                 setImgSrc(fish);
                 break;

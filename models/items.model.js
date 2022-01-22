@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 const itemSchema = new Schema(
     {
-        userId: {
-            type: String,
-            required: true
-        },
         wood: {
             type: Number,
             required: false

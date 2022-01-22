@@ -13,11 +13,15 @@ const userSchema = new Schema(
             type: String,
             required: true,
             trim: true,
-            minlength: 5
+            minlength: 3
         },
         itemId: {
             type: String,
-            required: false
+            required: true
+        },
+        gameBoardId: {
+            type: String,
+            required: true
         },
         stake: {
             wood: {

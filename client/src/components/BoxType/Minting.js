@@ -17,9 +17,10 @@ function NoRiskBox() {
     const mintItemHandler = () => {
         const data = {
             itemName: mintMaterialState.item,
-            userId: userInfoState.userId,
+            itemId: userInfoState.inventoryId,
             materials: mintMaterialState.materials,
-            materialsCounter: materialCounterSliceState
+            materialsCounter: materialCounterSliceState,
+            userId: userInfoState.userId
         }
         try {
             dispatch(subtractMintingMaterialsThunk(data));

@@ -22,7 +22,9 @@ function NavBullet() {
                 </li>
                 <li><Link to="/town">Town</Link></li>
                 <li><Link to="/transactions">Transaction</Link></li>
-                {/* <li><Link to="/explore">Explore</Link></li> */}
+                <li><Link to="/explore">Explore</Link></li>
+                {/* <li><Link to="/explorePhaser">Explore</Link></li> */}
+                <li><Link to="/market">Market Place</Link></li>
                 {/* <li>Whitepaper</li> */}
             </ul>
         </div>

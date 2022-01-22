@@ -26,7 +26,7 @@ function BoxButton(props) {
     }, [])
 
     const onClickHandler = () => {
-        dispatch(loginThunk({ userName, userPass }));
+        dispatch(loginThunk({ userName, userPass, action }));
     }
 
     return (

@@ -32,10 +32,8 @@ Router.post('/mintItem/:name', (req, res) => {
     const itemName = req.body.data.itemName
     const materialCounterSlice = req.body.data.materialsCounter;
     const mintMatieral = req.body.data.materials;
-    const userId = req.body.data.userId;
     let mintFlag = false;
 
-    // Check if user has suffcient materials
     for (let key in materialCounterSlice) {
         if (materialCounterSlice[key] !== mintMatieral[key]) {
             mintFlag = true;

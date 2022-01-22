@@ -35,15 +35,16 @@ function StakeContainer() {
                     inventoryId: userState.inventoryId
                 }
 
-                // TODO: ONE STATE BEHIND
                 if (transactionData.action === 'deposit') {
                     dispatch(updateStakeMaterialThunk(data));
                     dispatch(updateMaterialThunk(data));
+                    // TODO: ONE STATE BEHIND
                     dispatch(updateUserStakeMaterialThunk(data));
                 } else if (transactionData.action === 'withdraw') {
                     data.amount = (data.amount * -1)
                     dispatch(updateStakeMaterialThunk(data));
                     dispatch(updateMaterialThunk(data));
+                    // TODO: ONE STATE BEHIND
                     dispatch(updateUserStakeMaterialThunk(data));
                 } else if (transactionData.action === 'mint') {
                 }

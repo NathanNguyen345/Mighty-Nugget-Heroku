@@ -21,10 +21,10 @@ function StakeInfo(props) {
                 userId: userLogin.userId
             })
             .then(res => {
-                console.log(res.data.msg);
+                console.log(`STAKE_INFO: ${res.data.msg}`);
             })
             .catch(err => {
-                console.log(err.response.data.msg)
+                console.log(`STAKE_INFO_ERROR: ${err.response.data.msg}`)
             })
     }
 

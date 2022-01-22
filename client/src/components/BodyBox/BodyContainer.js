@@ -4,7 +4,6 @@ import BoxImg from './BoxImg'
 import MiningGif from "../../assets/gif/Mining.gif";
 import NoRisk from "../../assets/gif/no-risk.gif";
 import Stake from "../../assets/gif/stake.png";
-import Wolf from "../../assets/gif/wolf.gif";
 
 function BodyContainer(props) {
     const { title, image, src } = props;

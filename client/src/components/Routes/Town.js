@@ -8,6 +8,7 @@ import StakeContainer from '../BoxType/StakeContainer';
 import { fetchTransactionData } from "../../slices/transactionSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFullMaterial } from "../../slices/mintMaterialsSlice";
+import { resetCounter } from '../../slices/materialCounterSlice';
 import css from "./Routes.module.css";
 
 function Town() {
@@ -27,6 +28,7 @@ function Town() {
             .then(res => {
                 dispatch(fetchFullMaterial(res.data.item.mats))
             })
+        dispatch(resetCounter());
     }, [userInfo.userId])
 
     const renderTown = () => {

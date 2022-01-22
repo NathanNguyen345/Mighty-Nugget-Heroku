@@ -5,7 +5,7 @@ export const loginThunk = createAsyncThunk(
     'login/postData',
     async (data, { rejectWithValue }) => {
         try {
-            const response = await axios.post('/user/login', { data });
+            const response = await axios.post(`/user/${data.action}`, { data });
             return response.data.userInfo
         } catch (err) {
             return rejectWithValue(err.response.data.msg);
@@ -15,14 +15,24 @@ export const loginThunk = createAsyncThunk(
 
 export const addWeaponToInventoryThunk = createAsyncThunk(
     'addWeaponToInventory/postData',
-    async (data) => {
-        const response = await axios.post(`/mint/mintItem/${data.itemName}`, { data });
-        return response.data
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`/mint/mintItem/${data.itemName}`, { data });
+            response.data.item['userId'] = data.userId
+            try {
+                const mintResponse = await axios.post('/inventory/mintWeapon', { data: response.data.item });
+                return mintResponse.data.item;
+            } catch (err) {
+                return rejectWithValue(err.response.data.msg);
+            }
+        } catch (err) {
+            return rejectWithValue(err.response.data.msg);
+        }
     }
 )
 
 export const updateUserStakeMaterialThunk = createAsyncThunk(
-    'updateStakeMaterial/postData',
+    'updateUserStakeMaterial/postData',
     async (data) => {
         const response = await axios.post('/user/updateStake', { data });
         return response.data
@@ -32,6 +42,7 @@ export const updateUserStakeMaterialThunk = createAsyncThunk(
 const initialState = {
     userId: "",
     inventoryId: "",
+    gameBoardId: "",
     stake: {
         wood: 0,
         ore: 0,
@@ -69,6 +80,7 @@ const userLoginSlice = createSlice({
         [loginThunk.fulfilled]: (state, action) => {
             state.userId = action.payload._id;
             state.inventoryId = action.payload.itemId;
+            state.gameBoardId = action.payload.gameBoardId;
             state.stake = action.payload.stake;
             state.weapon = action.payload.weapon;
             state.loggedIn = true;
@@ -83,7 +95,8 @@ const userLoginSlice = createSlice({
             state.loading = true;
         },
         [addWeaponToInventoryThunk.fulfilled]: (state, action) => {
-            state.weapon = [...state.weapon, action.payload.item];
+            state.weapon = [...state.weapon, action.payload];
+            state.error = "";
             state.loading = false;
         },
         [addWeaponToInventoryThunk.rejected]: (state, action) => {
