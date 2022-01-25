@@ -2,7 +2,6 @@ import React from 'react'
 import InventoryImg from '../BoxType/InventoryImg';
 import css from "../BoxType/BoxType.module.css";
 
-
 function TransactionStake(props) {
     const { action, amount, type, state } = props;
     return (

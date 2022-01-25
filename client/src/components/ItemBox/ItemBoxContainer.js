@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ItemSelection from './ItemSelection';
 import InventoryImg from '../BoxType/InventoryImg';
-
 import css from "./ItemBox.module.css";
 
 function ItemBoxContainer(props) {

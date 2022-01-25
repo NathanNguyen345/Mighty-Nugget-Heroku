@@ -26,7 +26,8 @@ Router.post('/createUser', (req, res) => {
             explorer: {
                 startCount: 0,
                 endCount: 0,
-                gameBoard: [[]]
+                gameBoard: [[]],
+                inProgress: false
             }
         })
         return await newGame.save();
@@ -106,6 +107,12 @@ Router.post('/updateStake', (req, res) => {
             }
         })
     })
+})
+
+// TODO: Refresh Data
+Router.post('/refreshData', (req, res) => {
+    const id = req.body.data.userId;
+    const isLoggedIn = require.body.data.loggedIn;
 
 
 })

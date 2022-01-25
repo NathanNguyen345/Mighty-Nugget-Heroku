@@ -11,8 +11,13 @@ const gameSchema = new Schema(
                 type: Number
             },
             gameBoard: {
-                type: Schema.Types.Mixed,
-                default: []
+                type: Schema.Types.Mixed
+            },
+            inProgress: {
+                type: Boolean
+            },
+            prize: {
+                type: Number
             }
         }
     }

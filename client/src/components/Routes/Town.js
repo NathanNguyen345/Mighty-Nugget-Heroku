@@ -16,6 +16,10 @@ function Town() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+
+    })
+
+    useEffect(() => {
         // TODO: Changed from GET to POST to work with heroku
         axios.post(`/transaction/full/`, { id: userInfo.userId })
             .then(res => {

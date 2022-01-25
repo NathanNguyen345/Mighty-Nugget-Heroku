@@ -6,11 +6,12 @@
   border: 15px solid #4d3e1a;
   border-top-color: #6c5826;
   border-bottom-color: #6c5826;
-  color: #da4040;
+  color: #e8c112;
   background-image: url("../../assets/image/boxbackground.png");
   background-size: cover;
   text-shadow: 0.15em 0.15em black;
   margin: 1em;
+  -webkit-text-stroke: 0.2px black; /* width and color */
 }
 
 .DecorateBoxInner {
@@ -69,6 +70,17 @@
 .GridItem {
   border-right: 1px solid black;
   overflow: hidden;
+  transition: all 0.3s ease-in;
+}
+
+.GridItem:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in;
+}
+
+.GridItem:hover img {
+  transform: scale(1.2);
+  transition: all 0.3s ease-in;
 }
 
 /*** No Risk Minting ***/
@@ -80,6 +92,68 @@
   height: 30em;
 }
 
+:global .pos-relative {
+  position: relative;
+  overflow: hidden;
+}
+
+:global .MintInnerContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  overflow: hidden;
+  bottom: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  z-index: 3;
+  opacity: 1;
+}
+
+:global .MintInnerContent {
+  opacity: 0;
+  z-index: 1;
+}
+
+.MintScreenTop {
+  background: rgba(0, 0, 0, 0.6);
+  height: 50%;
+  z-index: -1;
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  transition: ease, 1s;
+  opacity: 0;
+}
+
+:global .MintInnerContainerBottom {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  overflow: hidden;
+  top: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  z-index: 2;
+}
+
+.MintScreenBottom {
+  background: rgba(0, 0, 0, 0.6);
+  height: 50%;
+  z-index: 0;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  transition: ease, 1s;
+  opacity: 0;
+}
+
 /*** Stake ***/
 
 /*** Transactions ***/
@@ -87,8 +161,21 @@
   width: 25vw;
   margin: 0 auto;
   margin-bottom: 0.5em;
+
+  position: relative;
+  transition: all 0.3s ease-in;
 }
+
+.TransactionContainer:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in;
+}
+
 .TransactionCard img {
   width: 2em;
   height: 2em;
+}
+
+:global .inline-block {
+  display: inline-block;
 }

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import axios from "axios";
-import InventoryImg from './InventoryImg';
+import InventoryImg from '../BoxType/InventoryImg';
 import { fetchFullInventory } from "../../slices/userInventorySlice";
 import { useSelector, useDispatch } from 'react-redux';
-import css from "./BoxType.module.css";
+import css from "../BoxType/BoxType.module.css";
 
-function Inventory() {
+function Rewards() {
     const userId = useSelector(state => state.userLoginSlice.userId);
     const userFullInventory = useSelector(state => state.userInventorySlice.inventory)
     const dispatch = useDispatch()
@@ -49,4 +49,4 @@ function Inventory() {
     )
 }
 
-export default Inventory
+export default Rewards;

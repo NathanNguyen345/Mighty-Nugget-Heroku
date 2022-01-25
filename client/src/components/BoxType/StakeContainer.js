@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchStakeDataThunk, updateStakeMaterialThunk } from '../../slices/stakeSlice';
 import { updateMaterialThunk } from '../../slices/userInventorySlice';
 import { updateUserStakeMaterialThunk } from "../../slices/userLoginSlice";
-
 import css from "./BoxType.module.css";
 
 function StakeContainer() {

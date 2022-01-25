@@ -4,6 +4,7 @@
 }
 
 .BoardButton {
+  background-color: #da4040;
   display: flex;
   width: 5em;
   height: 5em;
@@ -13,7 +14,27 @@
 }
 
 .BoardButton img {
-  width: 5em;
-  height: 5em;
-  display: none;
+  width: 3em;
+  height: 3em;
+  /* display: none; */
+}
+
+.ExplorerInfo {
+}
+
+.ExplorerInfo p {
+  text-align: center;
+  font-size: 2em;
+  color: #e8c112;
+  text-shadow: 0.1em 0.1em black;
+}
+
+.ExplorerInfo span {
+  text-align: center;
+  color: #da4040;
+  text-shadow: 0.1em 0.1em black;
+}
+
+:global .span-green {
+  color: #07e23c !important;
 }

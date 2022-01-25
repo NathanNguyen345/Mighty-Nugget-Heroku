@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ItemBoxContainer from '../ItemBox/ItemBoxContainer';
 import { useSelector } from 'react-redux';
 
@@ -24,7 +24,6 @@ function Weapons() {
 
         return content;
     }
-
 
     return (
         <div className={`${css.DecorateBox}`}>

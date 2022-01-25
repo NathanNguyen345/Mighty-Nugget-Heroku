@@ -1,4 +1,5 @@
 .home {
+  overflow-x: hidden;
 }
 
 .Town {
@@ -15,6 +16,9 @@
   font-size: 2em;
   color: #da4040;
   text-shadow: 0.1em 0.1em black;
+}
+
+.Explorer {
 }
 
 .Activties h2 {

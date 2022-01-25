@@ -13,7 +13,7 @@ function BoxButton(props) {
 
     useEffect(() => {
         if (successfulLoggedIn) {
-            navigate("/town");
+            // navigate("/town");
         }
     }, [successfulLoggedIn])
 

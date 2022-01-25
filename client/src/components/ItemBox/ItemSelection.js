@@ -23,9 +23,9 @@ function ItemSelection(prop) {
 
     return (
         <div className={`${'flex'} ${'flex-evenly'}`}>
-            <button className="pixelButton" onClick={addClickHandler}>+</button>
-            <p className='blueText'>{matAmount}</p>
             <button className="pixelButton" onClick={subClickHandler}>-</button>
+            <p className='blueText'>{matAmount}</p>
+            <button className="pixelButton" onClick={addClickHandler}>+</button>
         </div>
     )
 }

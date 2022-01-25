@@ -56,6 +56,9 @@ app.use('/stake', stakeRouter);
 const transactionRouter = require("./routes/transaction");
 app.use('/transaction', transactionRouter);
 
+const gameRouter = require("./routes/gameBoard");
+app.use('/game', gameRouter);
+
 io.on('connection', (socket) => {
     console.log('a user connected: ' + socket.id);
 
