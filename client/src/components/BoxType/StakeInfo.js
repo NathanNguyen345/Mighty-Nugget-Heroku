@@ -8,11 +8,16 @@ function StakeInfo(props) {
     const [depositAmount, setDepositAmount] = useState(0)
     const stakeData = useSelector(state => state.stakeSlice);
     const userLogin = useSelector(state => state.userLoginSlice);
-    const [committed, setCommited] = useState(userLogin.stake[name]);
-    const [pool, setPool] = useState(stakeData.inventory[name]);
+    const [committed, setCommited] = useState();
+    const [pool, setPool] = useState();
     const [buttonType, setButtonType] = useState();
     const commitRef = useRef();
     const poolRef = useRef();
+
+    useEffect(() => {
+        setCommited(userLogin.stake[name]);
+        setPool(stakeData.inventory[name]);
+    })
 
     useEffect(() => {
         if (committed != (committed + depositAmount)) {
