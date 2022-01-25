@@ -40,7 +40,9 @@ const gameBoardSlice = createSlice({
             startCount: 0,
             endCount: 0,
             gameBoard: [[]],
-            inProgres: false
+            inProgres: false,
+            prizeMap: {},
+            prizeArray: []
         },
         error: "",
         loading: false
@@ -92,7 +94,8 @@ const gameBoardSlice = createSlice({
             state.explorer.startCount = action.payload.startCount;
             state.explorer.endCount = action.payload.endCount;
             state.explorer.gameBoard = action.payload.gameBoard;
-            state.explorer.prize = action.payload.prize;
+            state.explorer.prizeMap = action.payload.prizeMap;
+            state.explorer.prizeArray = action.payload.prizeArray;
             state.loading = false;
             state.error = ""
         },

@@ -7,6 +7,7 @@ import axe from "../../assets/image/weapons/axe.png";
 import boat from "../../assets/image/weapons/boat.png";
 import pickaxe from "../../assets/image/weapons/pickaxe.png";
 import sword from "../../assets/image/weapons/sword.png";
+import diamond from "../../assets/image/diamond.png";
 
 function InventoryImg(props) {
     const { imgId } = props
@@ -18,18 +19,6 @@ function InventoryImg(props) {
 
     const renderImgSrc = () => {
         switch (imgId) {
-            case 1:
-            case 'wood':
-                setImgSrc(wood);
-                break;
-            case 2:
-            case 'ore':
-                setImgSrc(ore);
-                break;
-            case 3:
-            case 'fish':
-                setImgSrc(fish);
-                break;
             case 'ether':
                 setImgSrc(ether);
                 break;
@@ -44,6 +33,22 @@ function InventoryImg(props) {
                 break;
             case 'pickaxe':
                 setImgSrc(pickaxe);
+                break;
+            case 1:
+            case 'wood':
+                setImgSrc(wood);
+                break;
+            case 2:
+            case 'ore':
+                setImgSrc(ore);
+                break;
+            case 3:
+            case 'fish':
+                setImgSrc(fish);
+                break;
+            case 4:
+            case 'diamond':
+                setImgSrc(diamond);
                 break;
             default:
                 break;

@@ -1,8 +1,22 @@
 .home {
+  padding-top: 80px;
   overflow-x: hidden;
 }
 
 .Town {
+  padding-top: 80px;
+}
+
+.Transaction {
+  padding-top: 80px;
+}
+
+.Explorer {
+  padding-top: 80px;
+}
+
+.MarketPlace {
+  padding-top: 80px;
 }
 
 .Terms {
@@ -18,7 +32,11 @@
   text-shadow: 0.1em 0.1em black;
 }
 
-.Explorer {
+.Explorer h2 {
+  text-align: center;
+  font-size: 2em;
+  color: #da4040;
+  text-shadow: 0.1em 0.1em black;
 }
 
 .Activties h2 {

@@ -4,6 +4,9 @@
   background-color: black;
   color: white;
   height: 5em;
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
 }
 
 .NavBarImg {
@@ -38,6 +41,10 @@
 .NavBarBulletContainer ul li a {
   text-decoration: none;
   transition: all 0.5s ease 0s;
+}
+
+.NavBarBulletContainer ul li a:link {
+  color: white;
 }
 
 .NavBarBulletContainer ul li a:visited {

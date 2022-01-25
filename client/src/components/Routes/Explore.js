@@ -16,8 +16,14 @@ function Explore() {
                 <h1>UNDER CONSTRUCTION</h1>
             </div>
             <div className='grid gridCol'>
-                <Inventory />
-                <Rewards />
+                <div className={`flex flex-col`}>
+                    <h2>Inventory</h2>
+                    <Inventory />
+                </div>
+                <div className={`flex flex-col`}>
+                    <h2>Rewards</h2>
+                    <Rewards />
+                </div>
             </div>
             <GameBoard />
         </div>

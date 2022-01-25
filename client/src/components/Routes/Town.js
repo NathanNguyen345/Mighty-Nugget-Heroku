@@ -15,9 +15,7 @@ function Town() {
     const userInfo = useSelector(state => state.userLoginSlice);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-
-    })
+    useEffect(() => { })
 
     useEffect(() => {
         // TODO: Changed from GET to POST to work with heroku

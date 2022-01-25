@@ -20,7 +20,7 @@ function StakeInfo(props) {
     })
 
     useEffect(() => {
-        if (committed != (committed + depositAmount)) {
+        if (committed !== (committed + depositAmount)) {
             if (buttonType === 'deposit') {
                 gsap.fromTo([commitRef.current, poolRef.current],
                     { scale: 1, color: "#00E1FF" },
@@ -38,6 +38,7 @@ function StakeInfo(props) {
         setDepositAmount(parseInt(e.target.value));
     }
 
+    // TODO: THUNK THIS ASAP
     const depositClickHandler = () => {
         axios.post(`/transaction/${name}/deposit`,
             {
@@ -68,7 +69,6 @@ function StakeInfo(props) {
                 userId: userLogin.userId
             })
             .then(res => {
-                console.log(res.data.msg);
                 setButtonType('withdraw')
                 setCommited(committed - depositAmount);
                 setPool(pool - depositAmount);

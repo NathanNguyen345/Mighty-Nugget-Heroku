@@ -4,7 +4,6 @@
 }
 
 .BoardButton {
-  background-color: #da4040;
   display: flex;
   width: 5em;
   height: 5em;
@@ -14,9 +13,8 @@
 }
 
 .BoardButton img {
-  width: 3em;
-  height: 3em;
-  /* display: none; */
+  width: 5em;
+  height: 5em;
 }
 
 .ExplorerInfo {
@@ -37,4 +35,8 @@
 
 :global .span-green {
   color: #07e23c !important;
+}
+
+:global .disabledButton {
+  background-color: #808080;
 }

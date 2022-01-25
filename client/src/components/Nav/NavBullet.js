@@ -22,14 +22,16 @@ function NavBullet() {
     return (
         <div className={`${css.NavBarBulletContainer}`}>
             <ul>
-                <li className='link'>
-                    {!(userLogin.loggedIn) ? <Link to="/">Login</Link> : <Link to="/" onClick={logoutClickHandler}>Logout</Link>}
-                </li>
                 <li className='link'><Link to="/town">Town</Link></li>
                 <li className='link'><Link to="/transactions">Transaction</Link></li>
                 <li className='link'><Link to="/explore">Explore</Link></li>
                 {/* <li><Link to="/explorePhaser">Explore</Link></li> */}
                 <li className='link'><Link to="/market">Market Place</Link></li>
+                {!(userLogin.loggedIn)
+                    ? null
+                    : <li className='link'>
+                        {!(userLogin.loggedIn) ? null : <Link to="/" onClick={logoutClickHandler}>Logout({userLogin.userId})</Link>}
+                    </li>}
                 {/* <li>Whitepaper</li> */}
             </ul>
         </div>

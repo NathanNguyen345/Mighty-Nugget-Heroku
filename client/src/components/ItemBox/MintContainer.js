@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ItemBoxContainer from './ItemBoxContainer';
-
 import css from "./ItemBox.module.css";
 
 function RequiredOreContainer() {

@@ -17,7 +17,7 @@ Router.post('/all', (req, res) => {
 Router.post('/:id', (req, res) => {
     const id = req.params.id;
     Weapon.findOne({ _id: id }, (err, itemFound) => {
-        console.log(itemFound);
+        // console.log(itemFound);
     })
 })
 

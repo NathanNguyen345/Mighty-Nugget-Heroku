@@ -16,8 +16,11 @@ const gameSchema = new Schema(
             inProgress: {
                 type: Boolean
             },
-            prize: {
-                type: Number
+            prizeMap: {
+                type: Object
+            },
+            prizeArray: {
+                type: Array
             }
         }
     }

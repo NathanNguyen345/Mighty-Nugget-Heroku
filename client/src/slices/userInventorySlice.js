@@ -19,7 +19,7 @@ export const subtractMintingMaterialsThunk = createAsyncThunk(
             const response = await axios.post(`/inventory/mint/subtractMaterial`, { data })
             return response.data.updatedData
         } catch (err) {
-            console.log(err.response)
+            console.log('err here')
             return rejectWithValue(err.response.data.msg);
         }
     }
@@ -27,10 +27,11 @@ export const subtractMintingMaterialsThunk = createAsyncThunk(
 
 const initialState = {
     inventory: {
+        ether: 0,
         wood: 0,
         ore: 0,
         fish: 0,
-        ether: 0,
+        diamond: 0
     },
     loading: false,
     error: ""
@@ -41,10 +42,11 @@ const userInventorySlice = createSlice({
     initialState,
     reducers: {
         fetchFullInventory(state, action) {
+            state.inventory.ether = action.payload.ether;
             state.inventory.wood = action.payload.wood;
             state.inventory.ore = action.payload.ore;
             state.inventory.fish = action.payload.fish;
-            state.inventory.ether = action.payload.ether;
+            state.inventory.diamond = action.payload.diamond;
         },
         updateMaterial(state, action) {
             state.inventory[action.payload.materialName] = state.wood - action.payload.amount;
@@ -75,10 +77,11 @@ const userInventorySlice = createSlice({
             state.loading = true;
         },
         [subtractMintingMaterialsThunk.fulfilled]: (state, action) => {
+            state.inventory.ether = action.payload.ether;
             state.inventory.wood = action.payload.wood;
             state.inventory.ore = action.payload.ore;
             state.inventory.fish = action.payload.fish;
-            state.inventory.ether = action.payload.ether;
+            state.inventory.diamond = action.payload.diamond;
             state.loading = false;
             state.error = "";
         },

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import InventoryImg from '../BoxType/InventoryImg';
 import { useSelector, useDispatch } from 'react-redux';
-import { createBoardThunk, updateGameBoardThunk } from '../../slices/gameBoardSlice';
+import { updateGameBoardThunk } from '../../slices/gameBoardSlice';
 import css from "./ExploreGame.module.css";
 import gsap from 'gsap';
+import GamePaymentButton from './GamePaymentButton';
 
 function GameBoard() {
     const userInfo = useSelector(state => state.userLoginSlice);
@@ -19,14 +20,16 @@ function GameBoard() {
 
         boardData.map((key, row) => {
             boardData[row].map((key, col) => {
-                if (boardData[row][col] == -1) {
+                if (boardData[row][col] === -1) {
                     content.push(
                         <button
                             key={`${row}${col}`}
                             value={`${row}${col}`}
                             className={`${css.BoardButton} disabledButton`}
                             disabled={true}>
-                            {gameData.explorer.prize != 0 ? <InventoryImg imgId={gameData.explorer.prize} /> : null}
+                            {gameData.explorer.prizeMap !== undefined && (`${row}${col}` in gameData.explorer.prizeMap)
+                                ? <InventoryImg imgId={gameData.explorer.prizeMap[`${row}${col}`]} />
+                                : null}
                         </button >
                     )
                 } else {
@@ -36,7 +39,6 @@ function GameBoard() {
                             value={`${row}${col}`}
                             className={`${css.BoardButton} activeButton`}
                             onClick={handlePrizeClick}>
-                            {boardData[row][col] != 0 ? <InventoryImg imgId={boardData[row][col]} /> : 0}
                         </button >
                     )
                 }
@@ -56,16 +58,12 @@ function GameBoard() {
             col: col
         }
 
-        if (boardData[row][col] == 0) {
+        if (boardData[row][col] === 0) {
             gsap.to(e.target, { background: '#808080' })
         } else {
             gsap.to(e.target, { background: '#07e23c' })
         }
         dispatch(updateGameBoardThunk(data))
-    }
-
-    const resetBoardClicker = () => {
-        dispatch(createBoardThunk(userInfo));
     }
 
     return (
@@ -90,7 +88,7 @@ function GameBoard() {
                 {renderGrid()}
             </div>
             <div>
-                <button className='pixelButton' onClick={resetBoardClicker}>Reset Board</button>
+                <GamePaymentButton />
             </div>
         </React.Fragment>
     );

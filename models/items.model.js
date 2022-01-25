@@ -18,6 +18,10 @@ const itemSchema = new Schema(
         ether: {
             type: Number,
             required: false
+        },
+        diamond: {
+            type: Number,
+            required: false
         }
     }
 )

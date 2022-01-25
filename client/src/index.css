@@ -77,12 +77,13 @@ input:focus {
 }
 
 .disabledButton {
-  background: grey;
+  background: #808080;
   transition: all 0.4s ease 0s;
 }
 
 .activeButton {
-  background-color: #da4040 !important;
+  /* background-color: #da4040 !important; */
+  background-image: url("./assets/image/gravelTile.png") !important;
   color: black !important;
   text-transform: uppercase;
   text-decoration: none;
@@ -93,8 +94,8 @@ input:focus {
 }
 
 .activeButton:hover {
-  color: #ffffff !important;
-  background-color: #da4040 !important;
+  /* background-color: #da4040 !important; */
+  background-image: url("./assets/image/gravelTile.png") !important;
   border: 2px solid black !important;
   transition: all 0.4s ease 0s;
   transform: scale(1.2);

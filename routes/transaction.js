@@ -4,7 +4,6 @@ const Transaction = require('../models/transaction.model');
 
 // API to make a transaction in the DB
 Router.post('/:name/:action', (req, res) => {
-    console.log(req.body)
     documentData = {
         userId: req.body.userId,
         action: req.params.action,

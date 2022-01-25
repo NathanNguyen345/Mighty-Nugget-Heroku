@@ -8,15 +8,17 @@ const User = require('../models/user.model');
 Router.post('/full', (req, res) => {
     const id = req.body.id;
 
+    // TODO: We can reduce this down
     if (id !== "") {
         User.findOne({ _id: id }, (err, userFound) => {
             if (userFound) {
                 Items.findOne({ _id: userFound.itemId }, (err, itemsFound) => {
                     const items = {
+                        ether: itemsFound.ether,
                         wood: itemsFound.wood,
                         ore: itemsFound.ore,
                         fish: itemsFound.fish,
-                        ether: itemsFound.ether
+                        diamond: itemsFound.diamond
                     }
                     res.status(200).json({ items: items });
                 })
@@ -76,12 +78,11 @@ Router.post('/mintWeapon', (req, res) => {
 // API to update single material in user inventory
 Router.post('/:matType', (req, res) => {
     const matType = req.body.data.materialName;
-    let amount = req.body.data.amount;
     const inventoryId = req.body.data.inventoryId;
     const updateQuery = {};
     updateQuery[matType] = req.body.data.material;
 
-    Items.findByIdAndUpdate({ _id: inventoryId }, updateQuery, { upsert: true }, (err, updated) => {
+    Items.findByIdAndUpdate({ _id: inventoryId }, updateQuery, { upsert: true, new: true }, (err, updated) => {
         if (updated) {
             res.status(200).json({
                 updatedData: {
@@ -105,7 +106,7 @@ Router.post('/mint/subtractMaterial', (req, res) => {
 
     Items.findById({ _id: itemId }, projection, (err, foundDoc) => {
         if (foundDoc) {
-            for (let key in foundDoc['_doc']) {
+            for (let key in materials) {
                 if (foundDoc[key] < materials[key]) {
                     updateFlag = false;
                     break;

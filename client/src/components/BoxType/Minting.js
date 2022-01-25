@@ -19,12 +19,15 @@ function NoRiskBox() {
     const dispatch = useDispatch();
     const [mintItem, setMintItem] = useState();
 
+    // TODO: Error on user creation
     useEffect(() => {
-        const mintedWeapon = userInfoState.weapon[userInfoState.weapon.length - 1];
-        setMintItem({
-            name: mintedWeapon.name,
-            atk: mintedWeapon.atk
-        })
+        if (userInfoState.weapon[userInfoState.weapon.length - 1] != undefined) {
+            const mintedWeapon = userInfoState.weapon[userInfoState.weapon.length - 1];
+            setMintItem({
+                name: mintedWeapon.name,
+                atk: mintedWeapon.atk
+            })
+        }
     }, [userInfoState.weapon])
 
     const mintItemHandler = () => {

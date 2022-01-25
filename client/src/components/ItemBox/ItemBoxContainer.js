@@ -6,6 +6,7 @@ import css from "./ItemBox.module.css";
 function ItemBoxContainer(props) {
     const { title, action, selection } = props
 
+    // TODO: Fix info for minting requirements
     return (
         <div className={`${css.ItemBoxContainer} ${'flex'}`}>
             <div className={`${css.Item}`}>

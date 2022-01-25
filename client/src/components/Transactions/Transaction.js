@@ -43,9 +43,11 @@ function Transaction() {
     }
 
     return (
-        <div className={`${css.PageTitle}`}>
-            <h1>Transactions</h1>
-            {userInfo.loggedIn ? renderTransactions() : <Navigate to="/" />}
+        <div className={`${css.Transaction}`}>
+            <div className={`${css.PageTitle}`}>
+                <h1>Transactions</h1>
+                {userInfo.loggedIn ? renderTransactions() : <Navigate to="/" />}
+            </div>
         </div>
     )
 }

@@ -28,8 +28,7 @@ Router.post('/:matType', (req, res) => {
 
     updateQuery[materialName] = stakeAmount + amount;
 
-    Stake.findByIdAndUpdate({ _id: stakeId }, updateQuery, { upsert: true }, (err, updated) => {
-        console.log(updated);
+    Stake.findByIdAndUpdate({ _id: stakeId }, updateQuery, { upsert: true, new: true }, (err, updated) => {
         if (updated) {
             res.status(200).json({
                 materialInfo: {

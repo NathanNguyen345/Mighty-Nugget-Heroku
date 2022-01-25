@@ -20,7 +20,7 @@ Router.post('/createExploreBoard', (req, res) => {
         gameGrid[row].map((key, col) => {
             let notEmptyFlag = Math.random() < 0.2
             if (notEmptyFlag) {
-                gameGrid[row][col] = Math.floor((Math.random() * 4))
+                gameGrid[row][col] = Math.floor((Math.random() * 5))
             }
         })
     })
@@ -30,7 +30,8 @@ Router.post('/createExploreBoard', (req, res) => {
         endCount: 100,
         gameBoard: gameGrid,
         inProgress: true,
-        prize: 0
+        prizeMap: {},
+        prizeArray: []
     }
 
     Game.findByIdAndUpdate({ _id: gameId }, { $set: { 'explorer': updateQuery } }, { upsert: true, new: true }, (err, gameUpdated) => {
@@ -51,8 +52,20 @@ Router.post('/updateGameBoard', (req, res) => {
     Game.findById({ _id: gameId }, (err, game) => {
         if (game.explorer.startCount < game.explorer.endCount) {
             game.explorer.startCount++;
-            game.explorer.prize = game.explorer.gameBoard[row][col];
-            game.explorer.gameBoard[row][col] = -1;
+
+            let gameBoard = game.explorer.gameBoard
+            let prizeArray = game.explorer.prizeArray
+
+            // Set cordinates for prize mapping for imagne rendering
+            if (gameBoard[row][col] != 0) {
+                game.explorer.prizeMap = { ...game.explorer.prizeMap, [`${row}${col}`]: gameBoard[row][col] }
+                if (prizeArray[gameBoard[row][col]] == undefined) {
+                    prizeArray[gameBoard[row][col]] = 1
+                } else {
+                    prizeArray[gameBoard[row][col]] = prizeArray[gameBoard[row][col]] + 1;
+                }
+            }
+            gameBoard[row][col] = -1;
 
             // Set value to -1 to tell that its been clicked
             updateQuery = game.explorer;
