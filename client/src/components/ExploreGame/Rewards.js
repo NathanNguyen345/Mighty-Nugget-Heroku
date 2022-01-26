@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import React from 'react';
 import InventoryImg from '../BoxType/InventoryImg';
-import { fetchFullInventory } from "../../slices/userInventorySlice";
 import { useSelector, useDispatch } from 'react-redux';
 import css from "../BoxType/BoxType.module.css";
 
 function Rewards() {
     const userFullInventory = useSelector(state => state.userInventorySlice.inventory)
     const prizeData = useSelector(state => state.gameBoardSlice.explorer.prizeArray);
-    const dispatch = useDispatch()
     const keyMap = {
         'wood': 1,
         'ore': 2,

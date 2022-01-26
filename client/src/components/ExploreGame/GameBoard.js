@@ -3,6 +3,7 @@ import InventoryImg from '../BoxType/InventoryImg';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateGameBoardThunk } from '../../slices/gameBoardSlice';
 import css from "./ExploreGame.module.css";
+import cssBox from "../BoxType/BoxType.module.css";
 import gsap from 'gsap';
 import GamePaymentButton from './GamePaymentButton';
 
@@ -84,8 +85,12 @@ function GameBoard() {
                     </p>
                 </div>
             </div>
-            <div className={`${css.GameGrid}`}>
-                {renderGrid()}
+            <div className={`${cssBox.DecorateBox}`}>
+                <div className={`${cssBox.DecorateBoxInner}`}>
+                    <div className={`${css.GameGrid}`}>
+                        {renderGrid()}
+                    </div>
+                </div>
             </div>
             <div>
                 <GamePaymentButton />

@@ -1,6 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const Game = require('../models/game.model');
+const Items = require('../models/items.model');
 
 Router.post('/fetchBoard', (req, res) => {
     const userInfo = req.body.data;
@@ -12,7 +13,8 @@ Router.post('/fetchBoard', (req, res) => {
 })
 
 Router.post('/createExploreBoard', (req, res) => {
-    const gameId = req.body.data.gameBoardId;
+    const gameId = req.body.data.userInfo.gameBoardId;
+    const gameCredit = req.body.data.credit
     let updateQuery = {};
     let gameGrid = Array.from(Array(10), () => new Array(10).fill(0));
 
@@ -27,7 +29,7 @@ Router.post('/createExploreBoard', (req, res) => {
 
     updateQuery = {
         startCount: 0,
-        endCount: 100,
+        endCount: gameCredit,
         gameBoard: gameGrid,
         inProgress: true,
         prizeMap: {},
@@ -83,5 +85,61 @@ Router.post('/updateGameBoard', (req, res) => {
         }
     })
 })
+
+// API to collect reward
+Router.post('/collectReward', (req, res) => {
+    const prizeData = req.body.data.prizeData;
+    const inventoryId = req.body.data.userInfo.inventoryId;
+    const inventoryAmount = req.body.data.userInventory.inventory;
+    let prizeQuery = {}
+    const keyMap = {
+        'ether': 0,
+        'wood': 1,
+        'ore': 2,
+        'fish': 3,
+        'diamond': 4
+    }
+    for (const [key, index] of Object.entries(keyMap)) {
+        if (index === 0) {
+            prizeQuery[key] = inventoryAmount[key]
+        } else {
+            if (prizeData[index] === undefined) {
+                prizeQuery[key] = inventoryAmount[key]
+            } else {
+                prizeQuery[key] = (inventoryAmount[key] + prizeData[index] * 10)
+            }
+        }
+    }
+
+    Items.findByIdAndUpdate({ _id: inventoryId }, prizeQuery, { upsert: true, new: true }, (err, updated) => {
+        if (updated) {
+            return res.status(200).json({ updateData: updated })
+        } else {
+            return res.status(401).json({ msg: "Update Reward Failed" })
+        }
+    })
+
+})
+
+// API for ether payment for game
+Router.post('/etherCollect', (req, res) => {
+    const inventoryId = req.body.data.userInfo.inventoryId;
+    const etherAmount = req.body.data.userInventory.inventory.ether;
+    const credit = req.body.data.credit;
+    let updateQuery = {
+        'ether': etherAmount - (credit / 10)
+    }
+
+
+    Items.findByIdAndUpdate({ _id: inventoryId }, updateQuery, { upsert: true, new: true }, (err, updated) => {
+        if (updated) {
+            return res.status(200).json({ updateData: updated })
+        } else {
+            return res.status(401).json({ msg: "Update Reward Failed" })
+        }
+    })
+
+})
+
 
 module.exports = Router;

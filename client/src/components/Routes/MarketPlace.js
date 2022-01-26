@@ -1,13 +1,25 @@
 import React from 'react';
 import css from "../Routes/Routes.module.css";
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function MarketPlace() {
-    return (
-        <div className={`${css.MarketPlace}`}>
-            <div className={`${css.PageTitle}`}>
-                <h1>UNDER CONSTRUCTION</h1>
+    const userInfo = useSelector(state => state.userLoginSlice);
+
+    const renderMarketPage = () => {
+        return (
+            <div className={`${css.MarketPlace}`}>
+                <div className={`${css.PageTitle}`}>
+                    <h1>Under Construction</h1>
+                </div>
             </div>
-        </div>
+        )
+    }
+
+    return (
+        <React.Fragment>
+            {userInfo.loggedIn ? renderMarketPage() : <Navigate to="/" />}
+        </React.Fragment>
     )
 }
 

@@ -40,3 +40,7 @@
 :global .disabledButton {
   background-color: #808080;
 }
+
+.EtherInput {
+  width: 5em;
+}

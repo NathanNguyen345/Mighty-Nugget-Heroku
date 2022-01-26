@@ -7,8 +7,11 @@ import { subtractMintingMaterialsThunk } from "../../slices/userInventorySlice";
 import { addWeaponToInventoryThunk } from "../../slices/userLoginSlice";
 import css from "./BoxType.module.css";
 import { Timeline } from 'gsap/gsap-core';
+import InfoButton from '../BodyBox/InfoButton';
+import InfoScreen from '../BodyBox/InfoScreen';
 
-function NoRiskBox() {
+function NoRiskBox(props) {
+    const { boxType } = props
     const materialCounterSliceState = useSelector(state => state.materialCounterSlice);
     const mintMaterialState = useSelector(state => state.mintMaterialsSlice)
     const userInfoState = useSelector(state => state.userLoginSlice);
@@ -66,8 +69,12 @@ function NoRiskBox() {
         }, 1500);
     }
 
+    const handleMouseOver = () => {
+        boxType('Mint');
+    }
+
     return (
-        <div className={`${css.NoRiskMinting}`}>
+        <div className={`${css.NoRiskMinting}`} onMouseEnter={handleMouseOver}>
             <div className={`${css.DecorateBox}`}>
                 <div className={`${css.DecorateBoxInner} pos-relative`}>
                     <div className='MintInnerContainer'>
@@ -88,7 +95,12 @@ function NoRiskBox() {
                     <div className='MintInnerContainerBottom'>
                         <div className={`${css.MintScreenBottom}`} ref={blockerBottomRef}></div>
                     </div>
-                    <h2>Mint A Weapon</h2>
+                    <div className='flex'>
+                        <div className='flexItem'>
+                            <h2>Mint A Weapon</h2>
+                        </div>
+                        <InfoButton />
+                    </div>
                     <p>You're guaranteed to receive a weapon on mint with randomize stats</p>
                     <MintContainer />
                     <p> Select a weapon to see how much materials is needed</p>

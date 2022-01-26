@@ -10,3 +10,51 @@
   width: 10em;
   height: 10em;
 }
+
+.InfoButton {
+}
+
+.InfoButton button {
+  width: 3em;
+  height: 3em;
+  border-radius: 3em 3em;
+}
+
+:global .flexItem:nth-of-type(1) {
+  flex-grow: 2;
+}
+:global .flexItem:nth-of-type(2) {
+  flex-grow: 0.2;
+}
+:global .InfoScreen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  justify-content: center;
+  opacity: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+:global .infoText {
+  text-align: left;
+}
+
+:global .pageInfo h2 {
+  color: #e8c112 !important;
+  font-size: 1em !important;
+}
+
+:global .pageInfo p {
+  font-size: 0.5em !important;
+  text-align: left;
+  text-shadow: 0.09em 0.09em black;
+}

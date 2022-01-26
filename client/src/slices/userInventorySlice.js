@@ -25,6 +25,30 @@ export const subtractMintingMaterialsThunk = createAsyncThunk(
     }
 )
 
+export const collectRewardThunk = createAsyncThunk(
+    'collectReward/postData',
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.post('game/collectReward', { data });
+            return response.data.updateData;
+        } catch (err) {
+            console.log(rejectWithValue(err.response.data.msg));
+        }
+    }
+)
+
+export const explorerEtherPaymentThunk = createAsyncThunk(
+    'explorerEtherPayment/postData',
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.post('game/etherCollect', { data });
+            return response.data.updateData;
+        } catch (err) {
+            console.log(rejectWithValue(err.response.data.msg));
+        }
+    }
+)
+
 const initialState = {
     inventory: {
         ether: 0,
@@ -49,7 +73,7 @@ const userInventorySlice = createSlice({
             state.inventory.diamond = action.payload.diamond;
         },
         updateMaterial(state, action) {
-            state.inventory[action.payload.materialName] = state.wood - action.payload.amount;
+            state.inventory[action.payload.materialName] = state.inventory[action.payload.materialName] - action.payload.amount;
         },
         subtractMintingMaterials(state, action) {
             state.inventory.wood = state.inventory.wood - action.payload.wood;
@@ -86,6 +110,38 @@ const userInventorySlice = createSlice({
             state.error = "";
         },
         [subtractMintingMaterialsThunk.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
+        [collectRewardThunk.pending]: (state) => {
+            state.loading = true;
+        },
+        [collectRewardThunk.fulfilled]: (state, action) => {
+            state.inventory.ether = action.payload.ether;
+            state.inventory.wood = action.payload.wood;
+            state.inventory.ore = action.payload.ore;
+            state.inventory.fish = action.payload.fish;
+            state.inventory.diamond = action.payload.diamond;
+            state.loading = false;
+            state.error = ""
+        },
+        [collectRewardThunk.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
+        [explorerEtherPaymentThunk.pending]: (state) => {
+            state.loading = true;
+        },
+        [explorerEtherPaymentThunk.fulfilled]: (state, action) => {
+            state.inventory.ether = action.payload.ether;
+            state.inventory.wood = action.payload.wood;
+            state.inventory.ore = action.payload.ore;
+            state.inventory.fish = action.payload.fish;
+            state.inventory.diamond = action.payload.diamond;
+            state.loading = false;
+            state.error = ""
+        },
+        [explorerEtherPaymentThunk.rejected]: (state, action) => {
             state.loading = false;
             state.error = action.payload;
         }

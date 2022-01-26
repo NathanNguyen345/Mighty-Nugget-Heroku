@@ -30,7 +30,7 @@ function NavBullet() {
                 {!(userLogin.loggedIn)
                     ? null
                     : <li className='link'>
-                        {!(userLogin.loggedIn) ? null : <Link to="/" onClick={logoutClickHandler}>Logout({userLogin.userId})</Link>}
+                        {!(userLogin.loggedIn) ? null : <Link to="/" onClick={logoutClickHandler}>Logout({userLogin.userName})</Link>}
                     </li>}
                 {/* <li>Whitepaper</li> */}
             </ul>

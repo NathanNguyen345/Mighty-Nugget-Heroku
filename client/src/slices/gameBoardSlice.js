@@ -33,20 +33,20 @@ export const updateGameBoardThunk = createAsyncThunk(
     }
 );
 
+const initialState = {
+    explorer: {
+        startCount: 0,
+        endCount: 0,
+        gameBoard: [[]],
+        inProgres: false,
+        prizeMap: {},
+        prizeArray: []
+    },
+}
+
 const gameBoardSlice = createSlice({
     name: 'gameBoard',
-    initialState: {
-        explorer: {
-            startCount: 0,
-            endCount: 0,
-            gameBoard: [[]],
-            inProgres: false,
-            prizeMap: {},
-            prizeArray: []
-        },
-        error: "",
-        loading: false
-    },
+    initialState,
     reducers: {
         addToStartCounter(state) {
             state.explorer.startCount = state.explorer.startCount + 1;
@@ -56,6 +56,9 @@ const gameBoardSlice = createSlice({
         },
         fetchGameData(state) {
             return state
+        },
+        resetGameData(state) {
+            Object.assign(state, initialState);
         }
     }, extraReducers: {
         [fetchGameDataThunk.pending]: (state) => {
@@ -108,7 +111,9 @@ const gameBoardSlice = createSlice({
 
 export const {
     addToStartCounter,
-    createBoard
+    createBoard,
+    fetchGameData,
+    resetGameData
 } = gameBoardSlice.actions;
 
 export default gameBoardSlice.reducer;

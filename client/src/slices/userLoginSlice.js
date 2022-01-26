@@ -41,6 +41,7 @@ export const updateUserStakeMaterialThunk = createAsyncThunk(
 
 
 const initialState = {
+    userName: "",
     userId: "",
     inventoryId: "",
     gameBoardId: "",
@@ -79,6 +80,7 @@ const userLoginSlice = createSlice({
             state.loading = true;
         },
         [loginThunk.fulfilled]: (state, action) => {
+            state.userName = action.payload.userName;
             state.userId = action.payload._id;
             state.inventoryId = action.payload.itemId;
             state.gameBoardId = action.payload.gameBoardId;

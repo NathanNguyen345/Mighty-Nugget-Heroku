@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import TransactionCard from './TransactionCard';
 import { fetchTransactionData } from '../../slices/transactionSlice';
 import css from "../Routes/Routes.module.css";
+import Terms from '../BoxType/Terms';
 
 function Transaction() {
     const transactionInfo = useSelector(state => state.transactionSlice);
@@ -46,8 +47,9 @@ function Transaction() {
         <div className={`${css.Transaction}`}>
             <div className={`${css.PageTitle}`}>
                 <h1>Transactions</h1>
-                {userInfo.loggedIn ? renderTransactions() : <Navigate to="/" />}
+                <Terms page={'Transaction'} />
             </div>
+            {userInfo.loggedIn ? renderTransactions() : <Navigate to="/" />}
         </div>
     )
 }

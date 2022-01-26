@@ -1,18 +1,26 @@
 .home {
   padding-top: 80px;
   overflow-x: hidden;
+  position: relative;
+  z-index: 100;
 }
 
 .Town {
   padding-top: 80px;
+  position: relative;
+  z-index: 100;
 }
 
 .Transaction {
   padding-top: 80px;
+  position: relative;
+  z-index: 100;
 }
 
 .Explorer {
   padding-top: 80px;
+  position: relative;
+  z-index: 100;
 }
 
 .MarketPlace {
