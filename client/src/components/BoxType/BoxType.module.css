@@ -17,6 +17,7 @@
 .DecorateBoxInner {
   border: 10px solid #78622c;
   text-align: center;
+  padding: 1em;
 }
 
 :global .Mining {
