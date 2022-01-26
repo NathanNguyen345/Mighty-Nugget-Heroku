@@ -12,11 +12,11 @@ Router.post('/createUser', (req, res) => {
     const createNewItem = async () => {
         const newItem = new Items({
             userId: "",
-            ether: 1000,
-            wood: 1000,
-            ore: 1000,
-            fish: 1000,
-            diamond: 100
+            ether: 10,
+            wood: 0,
+            ore: 0,
+            fish: 0,
+            diamond: 0
         });
 
         return await newItem.save();
